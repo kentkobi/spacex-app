@@ -1,23 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React from "react";
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "https://api.spacex.land/graphql",
+  cache: new InMemoryCache()
+});
+
+const Stack = createNativeStackNavigator();
+
+import HomeScreen from "./screens/Home";
+import LaunchesScreen from "./screens/Launches";
+
+import TabNavigator from "./navigation/TabNavigate";
 
 export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
-
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
-    );
-  }
+  return (
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <TabNavigator />
+      </NavigationContainer>
+    </ApolloProvider>
+  );
 }
