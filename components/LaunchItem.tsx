@@ -1,9 +1,11 @@
 import React from "react";
-
 import { Text, StyleSheet, View } from "react-native";
+import { LaunchType } from "./LaunchList";
 
 function LaunchItem({
-  launch: { id, mission_name, launch_year, launch_success }
+  launch: { mission_name, launch_year, launch_success }
+}: {
+  launch: LaunchType;
 }) {
   return (
     <View style={styles.container}>

@@ -1,7 +1,6 @@
 import React from "react";
-import { Text, FlatList, ScrollView } from "react-native";
+import { Text, ScrollView } from "react-native";
 import { useQuery, gql } from "@apollo/client";
-
 import RocketItem from "./RocketItem";
 
 const LAUNCHES_QUERY = gql`
@@ -17,7 +16,7 @@ const LAUNCHES_QUERY = gql`
   }
 `;
 
-export default function RocketList() {
+const RocketList = () => {
   const { loading, error, data } = useQuery(LAUNCHES_QUERY);
 
   if (loading)
@@ -41,4 +40,6 @@ export default function RocketList() {
       ))}
     </ScrollView>
   );
-}
+};
+
+export { RocketList };

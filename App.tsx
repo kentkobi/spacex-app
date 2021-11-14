@@ -3,6 +3,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import TabNavigator from "./navigation/TabNavigate";
 
 const client = new ApolloClient({
   uri: "https://api.spacex.land/graphql",
@@ -10,11 +11,6 @@ const client = new ApolloClient({
 });
 
 const Stack = createNativeStackNavigator();
-
-import HomeScreen from "./screens/Home";
-import LaunchesScreen from "./screens/Launches";
-
-import TabNavigator from "./navigation/TabNavigate";
 
 export default function App() {
   return (

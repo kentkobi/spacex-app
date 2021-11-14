@@ -1,15 +1,14 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { RocketList } from "../components/RocketList";
 
-import RocketList from "../components/RocketList";
-
-export default function Launches() {
+const RocketsScreen = () => {
   return (
     <View style={styles.container}>
       <RocketList />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -22,3 +21,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   }
 });
+
+export { RocketsScreen };

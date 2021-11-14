@@ -1,11 +1,10 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { HomeScreen } from "../screens/Home";
+import { LaunchesScreen } from "../screens/Launches";
+import { RocketsScreen } from "../screens/Rockets";
 
 const Tab = createBottomTabNavigator();
-
-import HomeScreen from "../screens/Home";
-import LaunchesScreen from "../screens/Launches";
-import RocketsScreen from "../screens/Rockets";
 
 function TabNavigator() {
   return (

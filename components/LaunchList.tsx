@@ -1,7 +1,6 @@
 import React from "react";
-import { Text, FlatList, ScrollView } from "react-native";
+import { Text, ScrollView } from "react-native";
 import { useQuery, gql } from "@apollo/client";
-
 import LaunchItem from "../components/LaunchItem";
 
 const LAUNCHES_QUERY = gql`
@@ -21,7 +20,22 @@ const LAUNCHES_QUERY = gql`
   }
 `;
 
-export default function LaunchList() {
+export type LaunchType = {
+  mission_name: string;
+  launch_success: boolean;
+  rocket: RocketDetails;
+  launch_year: number;
+  id: string;
+  launch_date_utc: string;
+  details: string;
+};
+
+type RocketDetails = {
+  rocket_name: string;
+  rocket_type: string;
+};
+
+const LaunchList = () => {
   const { loading, error, data } = useQuery(LAUNCHES_QUERY);
 
   if (loading)
@@ -40,9 +54,11 @@ export default function LaunchList() {
 
   return (
     <ScrollView>
-      {data.launches.map((launch) => (
-        <LaunchItem key={launch.id} launch={launch} />
+      {data.launches.map((launch: LaunchType, idx: string) => (
+        <LaunchItem key={idx} launch={launch} />
       ))}
     </ScrollView>
   );
-}
+};
+
+export { LaunchList };

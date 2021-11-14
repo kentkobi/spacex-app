@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { formatDuration, intervalToDuration } from "date-fns";
-import { Text, FlatList, ScrollView } from "react-native";
+import { Text } from "react-native";
 import { useQuery, gql } from "@apollo/client";
 
 const LAUNCHES_QUERY = gql`
@@ -54,7 +54,7 @@ export default function countDown() {
     }, 1000);
 
     return () => clearTimeout(timer);
-  });
+  }, [data.launchNext.launch_date_utc]);
 
   return <Text>{timeLeft}</Text>;
 }
