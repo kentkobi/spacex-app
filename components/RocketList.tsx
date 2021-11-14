@@ -3,7 +3,7 @@ import { Text, ScrollView } from "react-native";
 import { useQuery, gql } from "@apollo/client";
 import RocketItem from "./RocketItem";
 
-const LAUNCHES_QUERY = gql`
+const ROCKETS_QUERY = gql`
   query LaunchesQuery {
     rockets {
       id
@@ -16,8 +16,17 @@ const LAUNCHES_QUERY = gql`
   }
 `;
 
+export type RocketType = {
+  id: string;
+  name: string;
+  success_rate_pct: number;
+  type: string;
+  cost_per_launch: number;
+  active: string;
+};
+
 const RocketList = () => {
-  const { loading, error, data } = useQuery(LAUNCHES_QUERY);
+  const { loading, error, data } = useQuery(ROCKETS_QUERY);
 
   if (loading)
     return (
@@ -35,8 +44,8 @@ const RocketList = () => {
 
   return (
     <ScrollView>
-      {data.rockets.map((rocket) => (
-        <RocketItem key={rocket.id} launch={rocket} />
+      {data.rockets.map((rocket: RocketType, idx: string) => (
+        <RocketItem key={idx} launch={rocket} />
       ))}
     </ScrollView>
   );

@@ -3,7 +3,7 @@ import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 function RocketItem({
-  launch: { id, name, success_rate_pct, cost_per_launch, active }
+  launch: { name, success_rate_pct, cost_per_launch, active }
 }) {
   return (
     <View style={styles.container}>
