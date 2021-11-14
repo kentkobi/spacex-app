@@ -22,7 +22,7 @@ const LAUNCHES_QUERY = gql`
 
 export default function countDown() {
   const { loading, error, data } = useQuery(LAUNCHES_QUERY);
-  const [timeLeft, setTimeLeft] = useState(null);
+  const [timeLeft, setTimeLeft] = useState("");
 
   if (loading)
     return (
@@ -38,7 +38,7 @@ export default function countDown() {
       </>
     );
 
-  const calculateTimeLeft = (date) => {
+  const calculateTimeLeft = (date: string) => {
     let duration = intervalToDuration({
       start: new Date(),
       end: new Date(date)
